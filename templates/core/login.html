@@ -1,0 +1,117 @@
+{%extends 'base.html'%}
+{%block title %}{%endblock%}
+{%block body%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | AI Assistant</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #e2e8f0;
+        }
+
+        .login-card {
+            background: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #38bdf8;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: border 0.3s;
+        }
+
+        input:focus {
+            border-color: #38bdf8;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #38bdf8;
+            border: none;
+            border-radius: 8px;
+            color: #0f172a;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #7dd3fc;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+        <h2>Welcome Back</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input-group">
+                {% for message in messages %}
+                {%if message.tags == "error"%}
+                <p style="color: red;">{{ message }}</p>
+                {%endif%}
+                {% endfor %}
+                <label for="username">Username</label>
+                <input type="text" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" name="password" required>
+            </div>
+            <button type="submit">LOGIN</button>
+        </form>
+        <p style="margin-top:20px ;">
+            if you havn't account?
+            <a href="{%url 'core:register'%}" style="color:#38bdf8">new user</a>
+        </p>
+    </div>
+
+</body>
+
+</html>
+{%endblock%}

@@ -1,0 +1,128 @@
+{%extends 'base.html'%}
+{%block title%}{%endblock%}
+{%block body%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Assistant Portal</title>
+    <style>
+        /* Modern Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 50px;
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* The Professional Button */
+        .ask-btn {
+            padding: 18px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            background: transparent;
+            border: 2px solid #38bdf8;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .ask-btn:hover {
+            background: #38bdf8;
+            color: #0f172a;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.6);
+        }
+
+        .ask-btn:active {
+            transform: scale(0.95);
+        }
+
+        .l-btn {
+            border: none;
+            background: blue;
+            color: white;
+            padding: 5px 30px;
+            border-radius: 10px;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .l-btn:hover {
+            background: rgb(0, 0, 158);
+            transform: scale(0.9);
+
+        }
+
+        .b-title {
+            color: lime;
+            text-transform: capitalize;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div>
+            {%if user.is_authenticated%}
+            <h4 class="b-title"> Hello {{request.user}}</h4>
+
+            <form action="{%url 'core:logout'%}" method="POST">
+                {%csrf_token%}
+                <button class="l-btn" type="submit">Logout</button>
+            </form>
+            {%else%}
+            <h4 class="b-title">please login first</h4>
+            <a class="l-btn" href="{%url 'core:login'%}">Login</a>
+            {%endif%}
+        </div>
+
+        <div class="container">
+
+            <h1>AI Personal Assistant</h1>
+
+            <a href="{% url 'aiapp:ask_ai' %}" class="ask-btn">
+                Ask Anything....
+            </a>
+        </div>
+    </div>
+
+    <!-- <script>
+        function openChat() {
+            // Yahan aap apna chat logic ya redirect daal sakte hain
+            alert("Chat interface opening...");
+        }
+    </script> -->
+</body>
+
+</html>
+{%endblock%}

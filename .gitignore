@@ -1,0 +1,22 @@
+# Python (Virtual Environment & Compiled files)
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+
+# Django specific
+*.sqlite3
+db.sqlite3
+media/
+*.log
+
+# Environment variables (Secret keys)
+.env
+.venv
+.env.example
+
+# IDE specific files
+.vscode/
+.idea/
+.DS_Store
