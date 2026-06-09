@@ -94,7 +94,7 @@
     <div>
         <div>
             {%if user.is_authenticated%}
-            <h4 class="b-title"> Hello {{request.user}}</h4>
+            <h4 class="b-title"> Hello welcome {{request.user}}</h4>
 
             <form action="{%url 'core:logout'%}" method="POST">
                 {%csrf_token%}
