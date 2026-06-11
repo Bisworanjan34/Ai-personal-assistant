@@ -13,7 +13,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ["https://ai-personal-assistant-ylqo.vercel.app"]
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
