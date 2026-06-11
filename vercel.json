@@ -9,7 +9,6 @@
             }
         }
     ],
-    "buildCommand": "pip install -r requirements.txt && bash migrate.sh",
     "routes": [
         {
             "src": "/static/(.*)",
